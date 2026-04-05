@@ -1,0 +1,793 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500&display=swap');
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff;
+    color: #1e1c1a;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 3rem;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.75rem;
+  }
+
+  .logo-ui {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1e1c1a;
+    letter-spacing: 0.08em;
+  }
+
+  .logo-ui span {
+    font-size: 10px;
+    font-family: 'DM Sans', sans-serif;
+    color: #888;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 1px;
+  }
+
+  .badge {
+    font-size: 11px;
+    background: #fff8e6;
+    color: #a07800;
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-weight: 500;
+    border: 1px solid #f0d080;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid #e0ddd8;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .sec-ttl {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sec-ttl::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e8e5e0;
+  }
+
+  .g2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .g3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  .fg {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .fg:last-child {
+    margin-bottom: 0;
+  }
+
+  .fg label {
+    font-size: 11px;
+    color: #666;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  input,
+  textarea,
+  select {
+    border: 1.5px solid #c8c4be;
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 13px;
+    background: #f5f3ef;
+    color: #1e1c1a;
+    font-family: 'DM Sans', sans-serif;
+    width: 100%;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  input:hover,
+  textarea:hover,
+  select:hover {
+    border-color: #87A978;
+    background: #f0f5ee;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: #87A978;
+    background: #fff;
+    box-shadow: 0 0 0 3px #87A97830;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #aaa;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 62px;
+    line-height: 1.5;
+  }
+
+  .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 4px;
+  }
+
+  .tbl thead th {
+    font-size: 10px;
+    font-weight: 500;
+    color: #888;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0 4px 10px;
+    border-bottom: 1px solid #e8e5e0;
+  }
+
+  .tbl thead th:not(:first-child) {
+    text-align: right;
+  }
+
+  .item-row td {
+    padding: 4px 4px;
+    vertical-align: middle;
+  }
+
+  .item-row input {
+    border: 1.5px solid #c8c4be;
+    border-radius: 7px;
+    padding: 7px 8px;
+    font-size: 13px;
+    background: #f5f3ef;
+    color: #1e1c1a;
+    width: 100%;
+  }
+
+  .item-row input:focus {
+    border-color: #87A978;
+    background: #fff;
+    box-shadow: 0 0 0 2px #87A97825;
+    outline: none;
+  }
+
+  .item-row input::placeholder {
+    color: #aaa;
+  }
+
+  .td-r input {
+    text-align: right;
+  }
+
+  .td-disc input {
+    text-align: right;
+    background: #f0f5ee !important;
+    border-color: #b8d4b0 !important;
+  }
+
+  .td-disc input:focus {
+    border-color: #87A978 !important;
+  }
+
+  .td-net {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1e1c1a;
+    text-align: right;
+    white-space: nowrap;
+    padding-right: 2px;
+  }
+
+  .td-del {
+    width: 26px;
+    text-align: center;
+  }
+
+  .del-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 14px;
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+  }
+
+  .del-btn:hover {
+    background: #fdecea;
+    color: #c0392b;
+  }
+
+  .pct-wrap {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .pct-wrap input {
+    width: 52px;
+  }
+
+  .pct-sym {
+    font-size: 11px;
+    color: #87A978;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .add-row-btn {
+    font-size: 12px;
+    color: #888;
+    background: none;
+    border: 1.5px dashed #c8c4be;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 10px;
+    width: 100%;
+    transition: all 0.12s;
+  }
+
+  .add-row-btn:hover {
+    border-color: #87A978;
+    color: #87A978;
+    background: #f0f5ee;
+  }
+
+  .totals-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #e8e5e0;
+  }
+
+  .tot-r {
+    display: flex;
+    gap: 24px;
+    font-size: 12px;
+    align-items: center;
+  }
+
+  .tot-r .tl {
+    color: #888;
+    min-width: 100px;
+    text-align: right;
+  }
+
+  .tot-r .tv {
+    font-weight: 500;
+    color: #1e1c1a;
+    min-width: 90px;
+    text-align: right;
+  }
+
+  .tot-r.grand .tl {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #87A978;
+  }
+
+  .tot-r.grand .tv {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #87A978;
+  }
+
+  .biz-preview {
+    background: #f5f3ef;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #888;
+    line-height: 1.9;
+    margin-top: 12px;
+    border: 1px solid #e0ddd8;
+  }
+
+  .biz-preview strong {
+    color: #1e1c1a;
+    font-weight: 500;
+  }
+
+  .logo-upload-box {
+    border: 1.5px dashed #c8c4be;
+    border-radius: 8px;
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.12s;
+    position: relative;
+    background: #f5f3ef;
+  }
+
+  .logo-upload-box:hover {
+    border-color: #87A978;
+    background: #f0f5ee;
+  }
+
+  .logo-upload-box input[type=file] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .logo-preview {
+    max-height: 60px;
+    max-width: 160px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .logo-placeholder {
+    font-size: 12px;
+    color: #888;
+  }
+
+  .logo-placeholder span {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .remove-logo {
+    font-size: 11px;
+    color: #c0392b;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 6px;
+    display: none;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 1.25rem;
+  }
+
+  .btn-main {
+    flex: 1;
+    padding: 13px;
+    background: #87A978;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.13s;
+  }
+
+  .btn-main:hover {
+    background: #6E9060;
+  }
+
+  .btn-sec {
+    padding: 13px 16px;
+    background: #fff;
+    border: 1.5px solid #c8c4be;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: #1e1c1a;
+    cursor: pointer;
+  }
+
+  .btn-sec:hover {
+    background: #f5f3ef;
+  }
+
+  .err {
+    font-size: 11px;
+    color: #c0392b;
+    margin-top: 5px;
+    display: none;
+  }
+
+  .err.show {
+    display: block;
+  }
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="logo-ui">ORRIN FLAME<span>Candles for Soulful Living — Invoice Builder</span></div>
+    <div class="badge">Staff only</div>
+  </div>
+
+  <div class="card">
+    <div class="sec-ttl">Invoice details</div>
+    <div class="g3">
+      <div class="fg"><label>Invoice number</label><input type="text" id="inv-no" value="0000219" /></div>
+      <div class="fg"><label>Date</label><input type="date" id="inv-date" /></div>
+      <div class="fg"><label>Currency</label>
+        <select id="currency">
+          <option value="USD">USD</option>
+          <option value="LKR">LKR</option>
+          <option value="GBP">GBP</option>
+          <option value="EUR">EUR</option>
+        </select>
+      </div>
+    </div>
+    <div class="biz-preview">
+      <strong>86/2, Kirindegedara, Wava Ihala, Kamburugamuwa, Matara</strong><br>
+      orrinflame@gmail.com &nbsp;|&nbsp; +94 74 114 7420
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-ttl">Business logo</div>
+    <div class="logo-upload-box" id="logo-box">
+      <input type="file" accept="image/*" onchange="handleLogo(event)" />
+      <div class="logo-placeholder" id="logo-placeholder"><span>🖼</span>Click to upload your logo</div>
+      <img id="logo-preview" class="logo-preview" style="display:none;" />
+    </div>
+    <button class="remove-logo" id="remove-logo-btn" onclick="removeLogo()">Remove logo</button>
+  </div>
+
+  <div class="card">
+    <div class="sec-ttl">Customer details</div>
+    <div class="g2">
+      <div class="fg"><label>Full name *</label><input type="text" id="c-name" placeholder="e.g. Greta Mae Evans" />
+      </div>
+      <div class="fg"><label>Phone</label><input type="tel" id="c-phone" placeholder="+94 7X XXX XXXX" /></div>
+    </div>
+    <div class="err" id="err-cust">Customer name is required.</div>
+  </div>
+
+  <div class="card">
+    <div class="sec-ttl">Line items</div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="text-align:left;width:34%">Service / Item</th>
+          <th style="width:11%">Qty</th>
+          <th style="width:14%">Unit price</th>
+          <th style="width:13%">Subtotal</th>
+          <th style="width:12%;color:#87A978;">Disc %</th>
+          <th style="width:13%">Net total</th>
+          <th style="width:3%"></th>
+        </tr>
+      </thead>
+      <tbody id="items-body"></tbody>
+    </table>
+    <button class="add-row-btn" onclick="addRow()">+ Add line item</button>
+    <div class="err" id="err-items">Add at least one line item.</div>
+    <div class="totals-wrap">
+      <div class="tot-r"><span class="tl">Subtotal</span><span class="tv" id="ui-sub">0.00</span></div>
+      <div class="tot-r"><span class="tl" style="color:#87A978;">Total discount</span><span class="tv" id="ui-disc"
+          style="color:#87A978;">-0.00</span></div>
+      <div class="tot-r grand"><span class="tl">Total</span><span class="tv" id="ui-total">0.00</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-ttl">Payment & terms</div>
+    <div class="g2">
+      <div class="fg"><label>Payment method</label>
+        <textarea id="pay-method">Bank Name: ComBank
+Account No: 8025846023
+Name: K A D C N Kariyapperuma</textarea>
+      </div>
+      <div class="fg"><label>Terms & conditions</label>
+        <textarea id="terms">Please send half payment within a few days of receiving this invoice.</textarea>
+      </div>
+    </div>
+    <div class="fg" style="margin-top:4px;"><label>Signatory name</label><input type="text" id="sig-name"
+        value="Nikeshala" /></div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-main" onclick="genPDF()">Download Invoice PDF</button>
+    <button class="btn-sec" onclick="clearAll()">Clear</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  let rowId = 0, logoDataUrl = null, logoMime = null;
+  const GREEN = [135, 169, 120], BLACK = [30, 28, 26], GRAY = [110, 106, 100], LGRAY = [200, 200, 200];
+  const BIZ_ADDR = '86/2, Kirindegedara, Wava Ihala,';
+  const BIZ_ADDR2 = 'Kamburugamuwa, Matara';
+  const BIZ_EMAIL = 'orrinflame@gmail.com';
+  const BIZ_PHONE = '+94 74 114 7420';
+
+  function fmt(n) { return parseFloat(n || 0).toFixed(2); }
+
+  function handleLogo(e) {
+    const file = e.target.files[0]; if (!file) return;
+    logoMime = file.type;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      logoDataUrl = ev.target.result;
+      document.getElementById('logo-preview').src = logoDataUrl;
+      document.getElementById('logo-preview').style.display = 'block';
+      document.getElementById('logo-placeholder').style.display = 'none';
+      document.getElementById('remove-logo-btn').style.display = 'inline-block';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removeLogo() {
+    logoDataUrl = null; logoMime = null;
+    document.getElementById('logo-preview').style.display = 'none';
+    document.getElementById('logo-preview').src = '';
+    document.getElementById('logo-placeholder').style.display = 'block';
+    document.getElementById('remove-logo-btn').style.display = 'none';
+  }
+
+  function addRow(svc = '', qty = '', price = '') {
+    const id = 'r' + rowId++;
+    const tbody = document.getElementById('items-body');
+    const tr = document.createElement('tr');
+    tr.className = 'item-row'; tr.id = id;
+    tr.innerHTML = `
+    <td><input type="text" placeholder="Item name" value="${svc}" oninput="recalc()"/></td>
+    <td><input type="number" placeholder="0" value="${qty}" min="0" oninput="recalc()" style="text-align:right;width:100%;"/></td>
+    <td><input type="number" placeholder="0.00" value="${price}" min="0" step="0.01" oninput="recalc()" style="text-align:right;width:100%;"/></td>
+    <td class="td-net" id="${id}-sub" style="color:#888;font-weight:400;">0.00</td>
+    <td class="td-disc">
+      <div class="pct-wrap">
+        <input type="number" id="${id}-disc" placeholder="0" value="0" min="0" max="100" step="0.5" oninput="recalc()"/>
+        <span class="pct-sym">%</span>
+      </div>
+    </td>
+    <td class="td-net" id="${id}-net">0.00</td>
+    <td class="td-del"><button class="del-btn" onclick="delRow('${id}')">✕</button></td>
+  `;
+    tbody.appendChild(tr); recalc();
+  }
+
+  function delRow(id) { const el = document.getElementById(id); if (el) el.remove(); recalc(); }
+
+  function getItems() {
+    return Array.from(document.querySelectorAll('.item-row')).map(r => {
+      const inputs = r.querySelectorAll('input');
+      const svc = inputs[0].value.trim();
+      const qty = parseFloat(inputs[1].value) || 0;
+      const price = parseFloat(inputs[2].value) || 0;
+      const discPct = parseFloat(document.getElementById(r.id + '-disc')?.value) || 0;
+      const tot = qty * price;
+      const discAmt = tot * discPct / 100;
+      const net = tot - discAmt;
+      return { svc, qty, price, tot, discPct, discAmt, net, id: r.id };
+    });
+  }
+
+  function recalc() {
+    const items = getItems();
+    let sub = 0, totalDisc = 0;
+    items.forEach(it => {
+      sub += it.tot;
+      totalDisc += it.discAmt;
+      const subEl = document.getElementById(it.id + '-sub');
+      const netEl = document.getElementById(it.id + '-net');
+      if (subEl) subEl.textContent = fmt(it.tot);
+      if (netEl) netEl.textContent = fmt(it.net);
+    });
+    const total = sub - totalDisc;
+    document.getElementById('ui-sub').textContent = fmt(sub);
+    document.getElementById('ui-disc').textContent = '-' + fmt(totalDisc);
+    document.getElementById('ui-total').textContent = fmt(total);
+  }
+
+  document.getElementById('currency').addEventListener('change', recalc);
+
+  function validate() {
+    let ok = true;
+    if (!document.getElementById('c-name').value.trim()) { document.getElementById('err-cust').classList.add('show'); ok = false; }
+    else document.getElementById('err-cust').classList.remove('show');
+    const items = getItems().filter(it => it.svc || it.qty || it.price);
+    if (!items.length) { document.getElementById('err-items').classList.add('show'); ok = false; }
+    else document.getElementById('err-items').classList.remove('show');
+    return ok;
+  }
+
+  function genPDF() {
+    if (!validate()) return;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const W = 210, pad = 18, rEdge = 192;
+
+    doc.setFillColor(248, 251, 246); doc.rect(0, 0, W, 52, 'F');
+    doc.setFillColor(...GREEN); doc.rect(0, 52, W, 1.2, 'F');
+
+    if (logoDataUrl) {
+      try { doc.addImage(logoDataUrl, logoMime === 'image/png' ? 'PNG' : 'JPEG', pad, 6, 40, 22, '', 'FAST'); } catch (e) { drawBrandText(doc, pad); }
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...GRAY);
+      doc.text(BIZ_ADDR, pad, 32); doc.text(BIZ_ADDR2, pad, 36.5);
+      doc.text(BIZ_EMAIL + '   |   ' + BIZ_PHONE, pad, 41);
+    } else {
+      drawBrandText(doc, pad);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...GRAY);
+      doc.text(BIZ_ADDR, pad, 35); doc.text(BIZ_ADDR2, pad, 39.5);
+      doc.text(BIZ_EMAIL + '   |   ' + BIZ_PHONE, pad, 44);
+    }
+
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(26); doc.setTextColor(60, 58, 56);
+    doc.text('INVOICE', rEdge, 20, { align: 'right' });
+
+    const invNo = document.getElementById('inv-no').value || '0000001';
+    const rawDate = document.getElementById('inv-date').value;
+    const dispDate = rawDate ? new Date(rawDate).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) : new Date().toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const cur = document.getElementById('currency').value;
+    const custName = document.getElementById('c-name').value.trim();
+    const custPhone = document.getElementById('c-phone').value.trim();
+    const items = getItems();
+    let sub = 0, totalDisc = 0;
+    items.forEach(it => { sub += it.tot; totalDisc += it.discAmt; });
+    const grandTotal = sub - totalDisc;
+
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...GRAY);
+    doc.text('No: ' + invNo, rEdge, 29, { align: 'right' });
+    doc.text('Date: ' + dispDate, rEdge, 36, { align: 'right' });
+
+    let y = 60;
+    doc.text('Invoice to :', pad, y);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(...BLACK);
+    doc.text(custName, pad, y + 7);
+    if (custPhone) {
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...BLACK);
+      doc.text('Phone', pad, y + 15);
+      doc.setFont('helvetica', 'normal'); doc.setTextColor(...GRAY);
+      doc.text(custPhone, pad + 18, y + 15);
+    }
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...GRAY);
+    doc.text('Total due', rEdge, y + 4, { align: 'right' });
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(14); doc.setTextColor(...BLACK);
+    doc.text(cur + ' : ' + grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), rEdge, y + 13, { align: 'right' });
+    y += 26;
+
+    // Table header
+    const tW = rEdge - pad;
+    doc.setFillColor(...GREEN); doc.rect(pad, y, tW, 8, 'F');
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(255, 255, 255);
+    doc.setCharSpace(0.4);
+    doc.text('SERVICE', pad + 3, y + 5.5);
+    doc.text('QTY', pad + 76, y + 5.5);
+    doc.text('PRICE', pad + 96, y + 5.5);
+    doc.text('SUBTOTAL', pad + 116, y + 5.5);
+    doc.text('DISC', pad + 143, y + 5.5);
+    doc.text('TOTAL', pad + 158, y + 5.5);
+    doc.setCharSpace(0);
+    y += 8;
+
+    items.forEach((it, idx) => {
+      if (idx % 2 === 1) { doc.setFillColor(247, 251, 246); doc.rect(pad, y, tW, 7, 'F'); }
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...BLACK);
+      doc.text(it.svc || '', pad + 3, y + 5);
+      doc.text(String(it.qty), pad + 76, y + 5);
+      doc.text(fmt(it.price), pad + 96, y + 5);
+      doc.text(fmt(it.tot), pad + 116, y + 5);
+      doc.setTextColor(...GREEN);
+      doc.text(it.discPct > 0 ? it.discPct + '%' : '—', pad + 143, y + 5);
+      doc.setTextColor(...BLACK);
+      doc.text(fmt(it.net), pad + 158, y + 5);
+      y += 7;
+    });
+
+    doc.setDrawColor(...LGRAY); doc.setLineWidth(0.3); doc.line(pad, y, rEdge, y); y += 8;
+
+    const payMethod = document.getElementById('pay-method').value.trim();
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5); doc.setTextColor(...BLACK);
+    doc.text('Payment Method :', pad, y);
+    const pmStart = y + 5;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...GRAY);
+    const pmLines = doc.splitTextToSize(payMethod, 78);
+    pmLines.forEach((l, i) => doc.text(l, pad, pmStart + i * 5));
+
+    const totX = rEdge - 60; let ty = y;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...GRAY);
+    doc.text('Sub-total :', totX, ty); doc.setTextColor(...BLACK); doc.text(fmt(sub), rEdge, ty, { align: 'right' }); ty += 7;
+    if (totalDisc > 0) {
+      doc.setTextColor(...GREEN);
+      doc.text('Total discount :', totX, ty);
+      doc.text('-' + fmt(totalDisc), rEdge, ty, { align: 'right' });
+      ty += 4;
+    } else { ty += 4; }
+
+    doc.setFillColor(...GREEN); doc.rect(totX - 4, ty, rEdge - (totX - 4), 9, 'F');
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(255, 255, 255);
+    doc.text('Total :', totX, ty + 6);
+    doc.text(grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), rEdge, ty + 6, { align: 'right' });
+
+    let finalY = Math.max(pmStart + pmLines.length * 5, ty + 18) + 10;
+    const terms = document.getElementById('terms').value.trim();
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5); doc.setTextColor(...BLACK);
+    doc.text('Terms and Conditions', pad, finalY); finalY += 5;
+    doc.setFont('helvetica', 'italic'); doc.setFontSize(8); doc.setTextColor(...GRAY);
+    const tLines = doc.splitTextToSize(terms, 120);
+    tLines.forEach(l => { doc.text(l, pad, finalY); finalY += 4.5; });
+
+    const sigName = document.getElementById('sig-name').value.trim();
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(...BLACK);
+    doc.text(sigName, rEdge, finalY, { align: 'right' });
+    doc.setFontSize(7.5); doc.setTextColor(...GRAY);
+    doc.text('orrinflame', rEdge, finalY + 5, { align: 'right' });
+    doc.text(BIZ_EMAIL, pad, finalY);
+
+    doc.save('OrrinFlame-Invoice-No' + invNo + '.pdf');
+  }
+
+  function drawBrandText(doc, pad) {
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(21); doc.setTextColor(30, 28, 26);
+    doc.setCharSpace(2); doc.text('ORRIN FLAME', pad, 18); doc.setCharSpace(0);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(6.5); doc.setTextColor(110, 106, 100);
+    doc.setCharSpace(1.5); doc.text('CANDLES FOR SOULFUL', pad, 24); doc.text('LIVING', pad, 29); doc.setCharSpace(0);
+  }
+
+  function clearAll() {
+    document.getElementById('c-name').value = '';
+    document.getElementById('c-phone').value = '';
+    document.getElementById('items-body').innerHTML = '';
+    rowId = 0;
+    document.getElementById('inv-no').value = '0000219';
+    recalc();
+    ['err-cust', 'err-items'].forEach(id => document.getElementById(id).classList.remove('show'));
+  }
+
+  (function () {
+    document.getElementById('inv-date').value = new Date().toISOString().split('T')[0];
+    addRow('', 1, '');
+  })();
+</script>
